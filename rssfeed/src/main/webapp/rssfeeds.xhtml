@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" xml:lang="en" lang="en">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+
+
+	<style>
+#header {
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 5px;
+}
+
+#nav {
+	line-height: 30px;
+	background-color: #eeeeee;
+	height: 300px;
+	width: 100px;
+	float: left;
+	padding: 5px;
+}
+
+#section {
+	width: 350px;
+	float: left;
+	padding: 10px;
+}
+
+#footer {
+	background-color: black;
+	color: white;
+	clear: both;
+	text-align: center;
+	padding: 5px;
+}
+</style>
+
+</h:head>
+<h:body>
+
+	<div id="header">
+		<h1>Welcome To Yahoo Feeds</h1>
+	</div>
+	<h:form id="rssform" enctype="multipart/form-data"
+		onkeypress="if( event.keyCode == 13){event.keyCode=0;}"
+		acceptcharset="UTF-8">
+
+		<div>
+			<label>Google Translate :</label>
+		</div>
+		<div id="google_translate_element"></div>
+		<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+		<script type="text/javascript"
+			src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+		<p:dataTable id="rssfeed" editable="true"
+			value="#{RSSReaderController.messages}" var="bean" rows="10"
+			paginator="true" paginatorPosition="bottom"
+			emptyMessage="No feeds Found" reflow="true">
+			<f:facet name="footer">
+			</f:facet>
+			<f:facet name="header">
+				<p:outputLabel value="Latest News"></p:outputLabel>
+			</f:facet>
+
+			<p:column headerText="Title">
+				<a href="#{bean.link}" target="_blank"><p:outputLabel
+						value="#{bean.title}" /></a>
+			</p:column>
+			<p:column headerText="Message Description">
+				<p:outputLabel value="#{bean.description}" />
+			</p:column>
+
+
+
+
+
+
+
+
+		</p:dataTable>
+
+
+	</h:form>
+
+	<div id="footer">Copyright Yahoo.com</div>
+</h:body>
+</html>
